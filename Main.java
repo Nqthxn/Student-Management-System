@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Main{
     private static Scanner input = new Scanner(System.in);
-    private static ArrayList<Student> newStudent = new ArrayList<>();
+    private static ArrayList<Students> newStudent = new ArrayList<>();
     public static void main(String[] args){
         startSystem();
     }
@@ -25,6 +25,9 @@ public class Main{
             case 1:
                 addStudent();
                 break;
+            case 2:
+                studentDetails();
+                break;
         }
     }
     public static void addStudent(){
@@ -43,14 +46,34 @@ public class Main{
         char gender = input.next().charAt(0);
         input.nextLine();
 
-        newStudent.add(new Student(id, name, age, gender));
+        newStudent.add(new Students(id, name, age, gender));
         System.out.println("Student added successfully!\n");
 
-        System.out.print("Press Enter To Continue...");
+        System.out.print("Press Enter To Continue...  ");
         
         input.nextLine();
         System.out.println();
         startSystem();
 
+    }
+    public static void studentDetails(){
+        System.out.println("---------- Student Details ----------");
+        System.out.print("Enter Student ID : ");
+        String id = input.nextLine();
+
+        if(newStudent.isEmpty()){
+            System.out.println("No students are currently registered in the system. Please add a student to proceed\n");
+            startSystem();
+            return;
+        }
+
+        for(Students student : newStudent){
+            if(student.getId().equals(id)){
+                System.out.print("Hello");
+            }else{
+                System.out.println("Invalid Student ID. Please Try Again.\n");
+                startSystem();
+            }
+        }
     }
 }
