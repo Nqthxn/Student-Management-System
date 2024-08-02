@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Main{
     private static Scanner input = new Scanner(System.in);
-
+    private static ArrayList<Student> newStudent = new ArrayList<>();
     public static void main(String[] args){
         startSystem();
     }
@@ -16,5 +16,41 @@ public class Main{
             System.out.println((i + 1) + ". " + options[i]);
         }
         System.out.println("===================================================\n");
+        System.out.print("Enter your choice : ");
+        int choice = input.nextInt();
+        input.nextLine();
+        System.out.println();
+
+        switch(choice){
+            case 1:
+                addStudent();
+                break;
+        }
+    }
+    public static void addStudent(){
+        System.out.println("---------- New Student ----------");
+        System.out.print("Enter Student ID : ");
+        String id = input.nextLine();
+        
+        System.out.print("Enter Student Name : ");
+        String name = input.nextLine();
+
+        System.out.print("Enter Student Age : ");
+        int age = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Student Gender (M / F) : ");
+        char gender = input.next().charAt(0);
+        input.nextLine();
+
+        newStudent.add(new Student(id, name, age, gender));
+        System.out.println("Student added successfully!\n");
+
+        System.out.print("Press Enter To Continue...");
+        
+        input.nextLine();
+        System.out.println();
+        startSystem();
+
     }
 }
