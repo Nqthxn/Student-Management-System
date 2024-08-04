@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main{
     private static Scanner input = new Scanner(System.in);
@@ -30,6 +31,13 @@ public class Main{
                 break;
             case 3:
                 checkID(3);;
+                break;
+            case 4:
+                checkID(4);
+                break;
+            default:
+                System.out.println("Invalid Choice. Please Try Again.\n");
+                startSystem();
                 break;
         }
     }
@@ -108,9 +116,12 @@ public class Main{
         System.out.print("Enter Student ID : ");
         String id = input.nextLine();
         System.out.println();
+    
+        boolean studentFound = false;
 
         for(Students student : newStudent){
             if(student.getId().equals(id)){
+                studentFound = true;
                 switch(option){
                     case 1:
                         addStudent();
@@ -121,11 +132,15 @@ public class Main{
                     case 3:
                         updateInfo(student);
                         break;
+                    case 4:
+                        deleteStudent(id);
+                        break;
                 }
-            }else{
-                System.out.println("Invalid Student ID. Please Try Again.\n");
-                startSystem();
             }
+        }
+        if(!studentFound){
+            System.out.println("Invalid Student ID. Please Try Again.\n");
+            startSystem();
         }
     }
     public static void continuePrompt(Scanner input){
@@ -133,5 +148,23 @@ public class Main{
         input.nextLine();
         System.out.println();
         startSystem();
+    }
+    public static void deleteStudent(String id){
+        Iterator<Students> iterator = newStudent.iterator();
+        boolean studentRemoved = false;
+
+        while(iterator.hasNext()){
+            Students student = iterator.next();
+            if(student.getId().equals(id)){
+                iterator.remove();
+                System.out.println("Student ID " + id + " has been successfully deleted.\n");
+                studentRemoved = true;
+                break;
+            }
+        }
+        if(!studentRemoved){
+            System.out.println("Student with ID " + id + " not found.");
+        }
+        continuePrompt(input);
     }
 }
