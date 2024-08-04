@@ -40,6 +40,7 @@ public class Main{
         
         System.out.print("Enter Student Name : ");
         String name = input.nextLine();
+        name = name.toUpperCase();
 
         System.out.print("Enter Student Age : ");
         int age = input.nextInt();
@@ -47,29 +48,60 @@ public class Main{
 
         System.out.print("Enter Student Gender (M / F) : ");
         char gender = input.next().charAt(0);
+        gender = Character.toUpperCase(gender);
         input.nextLine();
 
         newStudent.add(new Students(id, name, age, gender));
         System.out.println("Student added successfully!\n");
 
-        System.out.print("Press Enter To Continue...  ");
-        
-        input.nextLine();
-        System.out.println();
-        startSystem();
-
+        continuePrompt(input);
     }
     public static void studentDetails(Students student){
         System.out.println("---------- Student Details ----------");
         System.out.println(student);
+        System.out.println();
+        continuePrompt(input);
+        
     }
-    public static void updateInfo(){
+    public static void updateInfo(Students student){
         System.out.println("---------- Update Student Information ----------\n");
+
+        System.out.println("Name : " + student.getName());
+        System.out.println("Age : " + student.getAge());
+        System.out.println("Gender : " + student.getGender());
+        System.out.println("Course : " + student.getCourse());
+        System.out.println("Grade : " + student.getGrade());
+        System.out.println();
+
+        System.out.print("Enter new name (or press Enter to keep unchanged) : ");
+        String newName = input.nextLine();
+        newName = newName.toUpperCase();
+
+
+        System.out.print("Enter new age (or press Enter to keep unchanged) : ");
+        int newAge = input.nextInt();
+        input.nextLine();
+
+
+        System.out.print("Enter new Gender (M / F) (or press Enter to keep unchanged) : ");
+        char newGender = input.next().charAt(0);
+        newGender = Character.toUpperCase(newGender);
+        input.nextLine();
+
+        if(!newName.trim().isEmpty() && newAge > 0 && (newGender == 'M' || newGender == 'F')){
+            student.updateInfo(newName, newAge, newGender);
+            System.out.println("Student information updated successfully!\n");
+            continuePrompt(input);
+        }else{
+            System.out.println("Error. Something went wrong. Please Try Again.");
+            startSystem();
+        }
     }
     public static void checkID(int option){
 
         if(newStudent.isEmpty()){
-            System.out.println("No students found in the system. Please add a student to continue");
+            System.out.println("No students found in the system. Please add a student to continue.\n");
+            startSystem();
             return;
         }
 
@@ -87,7 +119,7 @@ public class Main{
                         studentDetails(student);
                         break;
                     case 3:
-                        updateInfo();
+                        updateInfo(student);
                         break;
                 }
             }else{
@@ -95,5 +127,11 @@ public class Main{
                 startSystem();
             }
         }
+    }
+    public static void continuePrompt(Scanner input){
+        System.out.print("Press Enter To Continue...  ");
+        input.nextLine();
+        System.out.println();
+        startSystem();
     }
 }
