@@ -26,7 +26,10 @@ public class Main{
                 addStudent();
                 break;
             case 2:
-                studentDetails();
+                checkID(2);
+                break;
+            case 3:
+                checkID(3);;
                 break;
         }
     }
@@ -56,20 +59,37 @@ public class Main{
         startSystem();
 
     }
-    public static void studentDetails(){
+    public static void studentDetails(Students student){
         System.out.println("---------- Student Details ----------");
-        System.out.print("Enter Student ID : ");
-        String id = input.nextLine();
+        System.out.println(student);
+    }
+    public static void updateInfo(){
+        System.out.println("---------- Update Student Information ----------\n");
+    }
+    public static void checkID(int option){
 
         if(newStudent.isEmpty()){
-            System.out.println("No students are currently registered in the system. Please add a student to proceed\n");
-            startSystem();
+            System.out.println("No students found in the system. Please add a student to continue");
             return;
         }
 
+        System.out.print("Enter Student ID : ");
+        String id = input.nextLine();
+        System.out.println();
+
         for(Students student : newStudent){
             if(student.getId().equals(id)){
-                System.out.print("Hello");
+                switch(option){
+                    case 1:
+                        addStudent();
+                        break;
+                    case 2:
+                        studentDetails(student);
+                        break;
+                    case 3:
+                        updateInfo();
+                        break;
+                }
             }else{
                 System.out.println("Invalid Student ID. Please Try Again.\n");
                 startSystem();

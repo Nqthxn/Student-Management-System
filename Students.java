@@ -19,6 +19,6 @@ public class Students {
 
 
     public String toString(){
-        return id + name + age + gender;
+        return "Student ID : " + id + "\nName : " + name + "\nAge : " + age + "\nGender : " + gender + "\nEnrolled Courses : " + course + "\nGrades : " + grade;
     }
 }
