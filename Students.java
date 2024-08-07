@@ -5,6 +5,8 @@ public class Students {
     private char gender;
     private String course = "None";
     private String grade = "None";
+    private String courseID = "";
+    private String professor = ""; 
 
     public Students(String studentID, String studentName, int studentAge, char studentGender){
         this.id = studentID;
@@ -36,6 +38,12 @@ public class Students {
         this.name = newName;
         this.age = newAge;
         this.gender = newGender;
+    }
+
+    public void addCourse(String cID, String name, String instructor){
+        this.courseID = cID;
+        this.course = name;
+        this.professor = instructor;
     }
 
     public String toString(){

@@ -35,6 +35,9 @@ public class Main{
             case 4:
                 checkID(4);
                 break;
+            case 5:
+                checkID(5);
+                break;
             default:
                 System.out.println("Invalid Choice. Please Try Again.\n");
                 startSystem();
@@ -135,6 +138,9 @@ public class Main{
                     case 4:
                         deleteStudent(id);
                         break;
+                    case 5:
+                        addCourse(student);
+                        break;
                 }
             }
         }
@@ -165,6 +171,21 @@ public class Main{
         if(!studentRemoved){
             System.out.println("Student with ID " + id + " not found.");
         }
+        continuePrompt(input);
+    }
+    public static void addCourse(Students student){
+        System.out.println("---------- Add New Course ----------");
+        System.out.print("Enter Course ID : ");
+        String courseId = input.nextLine();
+        
+        System.out.print("Enter Course Name : ");
+        String courseName = input.nextLine();
+
+        System.out.print("Enter Instructor's Name : ");
+        String name = input.nextLine();
+
+        student.addCourse(courseId, courseName, name);
+        System.out.println("Course added successfully!\n");
         continuePrompt(input);
     }
 }
