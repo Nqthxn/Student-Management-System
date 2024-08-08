@@ -7,6 +7,7 @@ public class Students {
     private String grade = "None";
     private String courseID = "";
     private String professor = ""; 
+    private boolean courseAvailable = false;
 
     public Students(String studentID, String studentName, int studentAge, char studentGender){
         this.id = studentID;
@@ -44,6 +45,12 @@ public class Students {
         this.courseID = cID;
         this.course = name;
         this.professor = instructor;
+        this.courseAvailable = true;
+    }
+    public boolean checkCourse(){
+        return courseAvailable;
+    }
+    public void enrollStudent(){
     }
 
     public String toString(){

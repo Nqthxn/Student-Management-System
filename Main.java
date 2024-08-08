@@ -11,8 +11,7 @@ public class Main{
     public static void startSystem(){
         System.out.println("========== [ STUDENT MANAGEMENT SYSTEM ] ==========");
         String[] options = {"Add a new student", "View student details", "Update student information",
-                            "Delete a student", "Add a new course", "Enroll a student in a course", 
-                            "View course details", "Assign grades", "Generate reports", "Exit"};
+                            "Delete a student", "Add a new course", "Exit"};
         for(int i = 0; i < options.length; i++){
             System.out.println((i + 1) + ". " + options[i]);
         }
@@ -37,6 +36,9 @@ public class Main{
                 break;
             case 5:
                 checkID(5);
+                break;
+            case 6:
+                checkID(6);
                 break;
             default:
                 System.out.println("Invalid Choice. Please Try Again.\n");
@@ -141,6 +143,10 @@ public class Main{
                     case 5:
                         addCourse(student);
                         break;
+                    default:
+                        System.out.println("Invalid Student ID. Please Try Again.\n");
+                        startSystem();
+
                 }
             }
         }
@@ -188,4 +194,5 @@ public class Main{
         System.out.println("Course added successfully!\n");
         continuePrompt(input);
     }
+
 }
